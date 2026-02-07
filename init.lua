@@ -1,3 +1,5 @@
+vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/tree-sitter")
+
 -- OPTIONS
 vim.g.mapleader = " "
 
@@ -20,6 +22,13 @@ vim.o.winborder = "rounded"
 -- OPTIONS>diagnostic
 vim.diagnostic.config({
   virtual_text = { current_line = false }
+})
+
+-- MISC
+vim.filetype.add({
+  extension = {
+    pory = "pory",
+  },
 })
 
 -- COLORSCHEME
@@ -52,15 +61,14 @@ vim.keymap.set("n", "<leader>fh", "<Cmd>Picker Help<CR>", { desc = "Picker Help"
 require("mini.files").setup()
 vim.keymap.set("n", "<leader>e", "<Cmd>lua MiniFiles.open()<CR>", { desc = "File Explorer" })
 
-require("nvim-treesitter.config").setup({
-    ensure_installed = { "lua", "c", "vimdoc", "markdown", "vim", "json", "python", "poryscript" },
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
+-- treesitter-poryscript
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "pory",
+  callback = function()
+    vim.treesitter.start()
+  end,
 })
 
--- treesitter-poryscript
 vim.api.nvim_create_autocmd('User', {
   pattern = 'TSUpdate',
   callback = function()
@@ -75,9 +83,17 @@ vim.api.nvim_create_autocmd('User', {
 })
 vim.treesitter.language.register('poryscript', { 'pory' })
 
+require("nvim-treesitter.config").setup({
+    ensure_installed = { "lua", "c", "vimdoc", "markdown", "vim", "json", "python", "poryscript" },
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+})
+
 -- LSPCONFIG
 require("blink-cmp").setup({
   keymap = { preset = "enter" },
 })
 
-vim.lsp.enable({"lua-ls", "poryscript-pls", "clangd"})
+vim.lsp.enable({"lua-ls", "poryscript", "clangd"})
