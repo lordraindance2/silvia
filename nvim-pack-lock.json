@@ -1,0 +1,25 @@
+{
+  "plugins": {
+    "blink.cmp": {
+      "rev": "4b18c32",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "1.0.0 - 2.0.0"
+    },
+    "mini.files": {
+      "rev": "fafacfe",
+      "src": "https://github.com/nvim-mini/mini.files"
+    },
+    "mini.pick": {
+      "rev": "4ad37ad",
+      "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "nightfox.nvim": {
+      "rev": "ba47d4b",
+      "src": "https://github.com/EdenEast/nightfox.nvim"
+    },
+    "nvim-treesitter": {
+      "rev": "45a07f86",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    }
+  }
+}
