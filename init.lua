@@ -1,5 +1,3 @@
-vim.opt.runtimepath:append(vim.fn.stdpath("data") .. "/tree-sitter")
-
 -- OPTIONS
 vim.g.mapleader = " "
 
