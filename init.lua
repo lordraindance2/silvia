@@ -58,8 +58,16 @@ vim.keymap.set("n", "<leader>fb", "<Cmd>Pick buffers<CR>", { desc = "Buffer Pick
 vim.keymap.set("n", "<leader>fg", "<Cmd>Pick grep_live<CR>", { desc = "Grep" })
 vim.keymap.set("n", "<leader>fh", "<Cmd>Picker Help<CR>", { desc = "Picker Help" })
 
-require("mini.files").setup()
-vim.keymap.set("n", "<leader>e", "<Cmd>lua MiniFiles.open()<CR>", { desc = "File Explorer" })
+local MiniFiles = require("mini.files")
+MiniFiles.setup()
+vim.keymap.set("n", "<leader>e", function()
+  -- Fix annoying bug with spamming
+  if (vim.api.nvim_buf_get_name(0):sub(1, #"minifiles://") ==  "minifiles://") then
+    return
+  end
+  MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+  MiniFiles.reveal_cwd()
+end, { desc = "File Explorer" })
 
 -- treesitter-poryscript
 vim.api.nvim_create_autocmd("FileType", {
