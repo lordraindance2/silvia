@@ -20,6 +20,8 @@ vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.cindent = true
 
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+
 -- OPTIONS>diagnostic
 vim.diagnostic.config({
   virtual_text = { current_line = false }
@@ -91,7 +93,7 @@ require('nvim-treesitter').install({
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
-    "lua", "c", "vimdoc", "markdown", "vim", "json", "python", "poryscript", "zig", "cpp", "cmake",
+    "lua", "c", "vimdoc", "markdown", "vim", "json", "python", "poryscript", "zig", "cmake",
   },
   callback = function()
     vim.treesitter.start()
@@ -130,6 +132,19 @@ vim.api.nvim_create_autocmd("FileType", {
 -- LSPCONFIG
 require("blink-cmp").setup({
   keymap = { preset = "enter" },
+  sources = {
+    default = { 'lsp', 'buffer', 'snippets', 'path' },
+    per_filetype = {
+      pory = { "omni", "buffer", "snippets", "path" }
+    },
+    providers = {
+      omni = {
+        enabled = true,
+        score_offset = 100,
+        max_items = 10,
+      },
+    },
+  },
 })
 
 vim.lsp.enable({"lua-ls", "poryscript", "clangd", "zls"})
