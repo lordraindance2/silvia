@@ -5,13 +5,45 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
+    "fleur.nvim": {
+      "rev": "32bf4f6",
+      "src": "https://github.com/aikhe/fleur.nvim"
+    },
+    "mini-git": {
+      "rev": "df3881f",
+      "src": "https://github.com/nvim-mini/mini-git"
+    },
+    "mini.cursorword": {
+      "rev": "dda0f57",
+      "src": "https://github.com/nvim-mini/mini.cursorword"
+    },
     "mini.files": {
       "rev": "fafacfe",
       "src": "https://github.com/nvim-mini/mini.files"
     },
+    "mini.icons": {
+      "rev": "68c178e",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.indentscope": {
+      "rev": "0308f94",
+      "src": "https://github.com/nvim-mini/mini.indentscope"
+    },
+    "mini.move": {
+      "rev": "4d21420",
+      "src": "https://github.com/nvim-mini/mini.move"
+    },
+    "mini.notify": {
+      "rev": "29ec27f",
+      "src": "https://github.com/nvim-mini/mini.notify"
+    },
     "mini.pick": {
       "rev": "4ad37ad",
       "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "mini.statusline": {
+      "rev": "3e96596",
+      "src": "https://github.com/nvim-mini/mini.statusline"
     },
     "nightfox.nvim": {
       "rev": "ba47d4b",
@@ -20,6 +52,10 @@
     "nvim-treesitter": {
       "rev": "45a07f86",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter.git"
+    },
+    "which-key.nvim": {
+      "rev": "3aab214",
+      "src": "https://github.com/folke/which-key.nvim"
     }
   }
 }

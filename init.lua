@@ -1,12 +1,15 @@
 -- OPTIONS
 vim.g.mapleader = " "
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.o.termguicolors = true
 
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.signcolumn = "yes"
 
 vim.o.wrap = false
-vim.o.swapfile = false
 
 -- OPTIONS>Tabs
 vim.o.tabstop = 2
@@ -27,6 +30,11 @@ vim.diagnostic.config({
   virtual_text = { current_line = false }
 })
 
+vim.o.autoread = true
+vim.o.swapfile = false
+
+vim.o.clipboard = "unnamedplus"
+
 -- MISC
 vim.filetype.add({
   extension = {
@@ -34,20 +42,28 @@ vim.filetype.add({
   },
 })
 
--- COLORSCHEME
-vim.pack.add({
-  { src = "https://github.com/EdenEast/nightfox.nvim" },
-})
-
-vim.cmd("colorscheme duskfox")
-
 -- PLUGINS TODO: this could probably be separate files.
 vim.pack.add({
+  -- COLORSCHEME
+  { src = "https://github.com/EdenEast/nightfox.nvim" },
+  { src = "https://github.com/aikhe/fleur.nvim" },
+  -- Features
+  { src = "https://github.com/nvim-mini/mini.move",  },
   { src = "https://github.com/nvim-mini/mini.pick",  },
   { src = "https://github.com/nvim-mini/mini.files", },
+  { src = "https://github.com/nvim-mini/mini.icons", },
+  { src = "https://github.com/nvim-mini/mini-git", }, -- For mini.statusline functionality
+  { src = "https://github.com/nvim-mini/mini.statusline", },
+  { src = "https://github.com/nvim-mini/mini.notify", },
+  { src = "https://github.com/nvim-mini/mini.indentscope", },
+  { src = "https://github.com/nvim-mini/mini.cursorword", },
+  { src = "https://github.com/folke/which-key.nvim" },
+  -- LSP
   { src = "https://github.com/nvim-treesitter/nvim-treesitter.git", build = ":TSUpdate" },
   { src = "https://github.com/saghen/blink.cmp", version = vim.version.range("^1") },
 })
+
+vim.cmd("colorscheme duskfox")
 
 require("mini.pick").setup({
   options = {
@@ -71,6 +87,14 @@ vim.keymap.set("n", "<leader>e", function()
   MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
   MiniFiles.reveal_cwd()
 end, { desc = "File Explorer" })
+
+require("mini.move").setup()
+require("mini.git").setup()
+require("mini.icons").setup()
+require("mini.statusline").setup()
+require("mini.notify").setup()
+require("mini.indentscope").setup()
+require("mini.cursorword").setup()
 
 -- treesitter-poryscript
 vim.api.nvim_create_autocmd('User', {
